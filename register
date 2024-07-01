@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo I hope you \`source\`d me :-\)
+
+_dynamic_completion()
+{
+  COMPREPLY=()
+  if [ -f $1.comp ]; then for line in $(cat $1.comp); do if [[ $line == $2* ]]; then COMPREPLY+=("$line"); fi; done; fi
+}
+
+complete -D -F _dynamic_completion
